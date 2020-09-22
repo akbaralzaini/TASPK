@@ -1,0 +1,45 @@
+.pmd-sidebar-left .nav>li>a.active {
+    background-color: #b71c1c;
+    color: #ffffff;
+}
+
+.pmd-sidebar-left .nav>li>a:hover,
+.pmd-sidebar-left .nav>li.pmd-user-info>a:active {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+.pmd-sidebar-left .nav>li.pmd-user-info>a:hover,
+.pmd-sidebar-left .nav>li.pmd-user-info>a:focus,
+.pmd-sidebar-left .nav>li.pmd-user-info>a:active,
+.pmd-sidebar-left .nav>li.pmd-user-info>a.active {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.pmd-sidebar .pmd-sidebar-nav .dropdown-menu {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.pmd-sidebar-left .nav>li.pmd-user-info>a {
+    border-bottom: none;
+}
+
+.f {
+
+    float: right;
+
+}
+
+.pmd-ripple-effect {
+    text-align: right;
+}
+
+#content {
+    background-image: url('../img/bgp-img.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(255,255,255,0.5);
+}
