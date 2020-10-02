@@ -92,6 +92,8 @@ $kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria`");
 
 $nilai_putra = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `jk` = 1");
 $nilai_putri = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `jk` = 2");
+$jumlah_putra = $nilai_putra->num_rows;
+$jumlah_putri = $nilai_putri->num_rows;
 
 $putra = map_to_array(1);
 $putri = map_to_array(2);
@@ -460,8 +462,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putra;$no++) { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -486,8 +488,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putri;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -527,8 +529,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putra;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -553,8 +555,9 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php 
+											for($no = 1;$no<=$jumlah_putri;$no++)  { ?>
+												<th><?= ++$no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -594,8 +597,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putra;$no++) { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -620,8 +623,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putri;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -661,8 +664,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putra;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -687,8 +690,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putri;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -728,8 +731,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no =0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putra;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>
@@ -754,8 +757,8 @@ $pemenang_putri = pemenang($pemenang_pi);
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<?php $no = 0; foreach ($krit as $k) { ?>
-												<th><?= 'C'.++$no ?></th>
+											<?php for($no = 1;$no<=$jumlah_putri;$no++)  { ?>
+												<th><?= $no ?></th>
 											<?php } ?>
 										</tr>
 									</thead>

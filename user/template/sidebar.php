@@ -34,40 +34,41 @@
 		</li>
 		
 		<?php 
+		//membuat menu hilang ketika waktu sudah penutupan pendaftaran
 		date_default_timezone_set("Asia/Jakarta");
 		$date = date("Y-m-d");
 		$date=date('Y-m-d', strtotime($date));
 		$contractDateBegin = date('Y-m-d', strtotime("01/01/2021"));
 		if ($date >= $contractDateBegin) { ?>
 
-		<li class="dropdown pmd-dropdown pmd-sidebar-dropdown <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 1) {
-																	echo "open";
-																} ?>">
-			<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 1) {
-																														echo "active";
-																													} ?>" data-sidebar="true" aria-expandedhref="javascript:void(0);">
-				<i class="media-left media-middle material-icons">content_paste</i>
-				<span class="media-body">Formulir Pendaftaran</span>
-			</a>
-			<ul class="dropdown-menu" <?php if (empty($_GET['act']) or base64_decode($_GET['act']) != 1) {
-											echo 'style="background-color: #0b031b;"';
-										} ?>>
-				<li><a href="./index.php?c=<?= base64_encode('formulir') ?>&act=<?= base64_encode('1') ?>">Data Diri</a></li>
-				<li><a href="./index.php?c=<?= base64_encode('formulir_ortu') ?>&act=<?= base64_encode('1') ?>">Data Orang Tua</a></li>
-				<li><a href="./index.php?c=<?= base64_encode('formulir_pend_pres') ?>&act=<?= base64_encode('1') ?>">Data Pendidikan &amp; Prestasi</a></li>
-			</ul>
-		</li>
+			<li class="dropdown pmd-dropdown pmd-sidebar-dropdown <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 1) {
+																		echo "open";
+																	} ?>">
+				<a aria-expanded="false" data-toggle="dropdown" class="btn-user dropdown-toggle media pmd-ripple-effect <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 1) {
+																															echo "active";
+																														} ?>" data-sidebar="true" aria-expandedhref="javascript:void(0);">
+					<i class="media-left media-middle material-icons">content_paste</i>
+					<span class="media-body">Formulir Pendaftaran</span>
+				</a>
+				<ul class="dropdown-menu" <?php if (empty($_GET['act']) or base64_decode($_GET['act']) != 1) {
+												echo 'style="background-color: #0b031b;"';
+											} ?>>
+					<li><a href="./index.php?c=<?= base64_encode('formulir') ?>&act=<?= base64_encode('1') ?>">Data Diri</a></li>
+					<li><a href="./index.php?c=<?= base64_encode('formulir_ortu') ?>&act=<?= base64_encode('1') ?>">Data Orang Tua</a></li>
+					<li><a href="./index.php?c=<?= base64_encode('formulir_pend_pres') ?>&act=<?= base64_encode('1') ?>">Data Pendidikan &amp; Prestasi</a></li>
+				</ul>
+			</li>
 
-		<li>
-			<a class="pmd-ripple-effect <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 2) {
-											echo "active";
-										} ?>" href="./index.php?c=<?= base64_encode('unggah') ?>&act=<?= base64_encode('2') ?>">
-				<i class="media-left media-middle material-icons">cloud_upload</i>
-				<span class="media-body">Unggah Berkas</span>
-			</a>
-		</li>
+			<li>
+				<a class="pmd-ripple-effect <?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 2) {
+												echo "active";
+											} ?>" href="./index.php?c=<?= base64_encode('unggah') ?>&act=<?= base64_encode('2') ?>">
+					<i class="media-left media-middle material-icons">cloud_upload</i>
+					<span class="media-body">Unggah Berkas</span>
+				</a>
+			</li>
 
-									<?php } ?>
+		<?php } ?>
 
 		
 		</li>
