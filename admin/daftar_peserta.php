@@ -20,6 +20,9 @@ $final = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `status` = 2");
 			<li><a href="./index.php">Beranda</a></li>
 			<li class="active">Daftar Peserta</li>
 		</ol>
+		<div>
+		<button class="btn btn-primary">ysvtsry</button>
+		</div>
 
 		<div class="no-table-blank-state">
 			<?php

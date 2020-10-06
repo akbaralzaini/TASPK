@@ -343,7 +343,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 												<td><?= 'A'.++$no ?></td>
 												<?php
 												for ($i = 0; $i < count($value); $i++) { ?>
-													<td><?= $value[$i] ?></td>
+													<td><?= number_format((float)$value[$i], 3, '.', ''); ?></td>
 												<?php } ?>
 											</tr>
 										<?php } ?>
@@ -368,7 +368,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 												<td><?= 'R'.++$no ?></td>
 												<?php
 												for ($i = 0; $i < count($value); $i++) { ?>
-													<td><?= $value[$i] ?></td>
+													<td><?= number_format((float)$value[$i], 3, '.', ''); ?></td>
 												<?php } ?>
 											</tr>
 										<?php } ?>
@@ -408,7 +408,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 												<td><?= 'A'.++$no ?></td>
 												<?php
 												for ($i = 0; $i < count($value); $i++) { ?>
-													<td><?= $value[$i] ?></td>
+													<td><?= number_format((float)$value[$i], 3, '.', ''); ?></td>
 												<?php } ?>
 											</tr>
 										<?php } ?>
@@ -433,7 +433,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 												<td><?= 'A'.++$no ?></td>
 												<?php
 												for ($i = 0; $i < count($value); $i++) { ?>
-													<td><?= $value[$i] ?></td>
+													<td><?= number_format((float)$value[$i], 3, '.', ''); ?></td>
 												<?php } ?>
 											</tr>
 										<?php } ?>

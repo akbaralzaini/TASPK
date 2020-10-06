@@ -27,7 +27,6 @@ function map_to_array($sql) {
     }
 
     return $ret_arr;
-
 }
 
 function normalisasi($array) {
@@ -127,7 +126,6 @@ function map_value_to_array() {
         $array[] = $bobot['bobot'];
     }
 
-    //true
     return $array;
 }
 
@@ -141,9 +139,8 @@ function matriks_concordance($array) {
             $temp_val = 0;
             for ($j=0; $j < count($value[$i]); $j++) {
                 if($value[$i][$j] != '-') {
-                   // $temp_val += $bobot[$value[$i][$j]];
+                    $temp_val += $bobot[$value[$i][$j]];
                 }
-                $temp_val += $bobot[$value[$i][$j]];
             }
 
             if($temp_val == 0) {
@@ -186,45 +183,28 @@ function matriks_discordance($array, $weight_array)
     $ret_array = [];
 
     foreach($temp_arr as $key => $value) {
-        $ja = 0;
         foreach($tmp_weight as $k => $v) {
             if($key != $k) {
                 $tmp_arr = [];
-                
+                $tmp_top = [];
                 for ($i=0; $i < count($v); $i++) { 
                     $tmp_arr[] = abs($weight_array[$key][$i] - $v[$i]);
-                    //echo "<br>bot".$weight_array[$key][$i]." - ".$v[$i];
                 }
-                $tmp_top = [];
-                $ha = 0;
+
                 foreach ($value as $y => $e) {
-                    if($ha <= $ja){
-                        $ha++;
-                        continue;
-                    }
                     for ($i=0; $i < count($e); $i++) {
                         if($e[$i] !== '-') {
-                            //print_r($e);
                             $tmp_top[] = abs($weight_array[$key][$e[$i]] - $v[$e[$i]]);
-                            echo " jaja <br>".$weight_array[$key][$e[$i]]." - ".$v[$e[$i]];
-                        } //else {
+                        } else {
                             
-                        //}
+                        }
                     }
-                    
-                    break;
-                    
                 }
-                $ja++;
-               
+
                 $ret_array[$key][] = max($tmp_top) / max($tmp_arr);
-                // echo "<br>  ".max($tmp_top)."/".max($tmp_arr)."<br>";
-                //  echo json_encode($tmp_top);
-                // echo "<br>";
             } else {
                 $ret_array[$key][] = '-';
             }
-            echo $key."<br><br>";
         }
     }
 
@@ -315,16 +295,6 @@ function check_exist($prim_key, $table_name)
     } return false;
 }
 
-$koneksi = mysqli_connect('localhost', 'root', '', 'db_dina');
-
-$sql_1 = "TRUNCATE `aggregate_dominan`";$query = mysqli_query($koneksi, $sql_1);
-$sql_2 = "TRUNCATE `concordance_dominan`";$query = mysqli_query($koneksi, $sql_2);
-$sql_3 = "TRUNCATE `concordance_matrix`";$query = mysqli_query($koneksi, $sql_3);
-$sql_4 = "TRUNCATE `discordance_dominan`";$query = mysqli_query($koneksi, $sql_4);
-$sql_5 = "TRUNCATE `discordance_matrix`;";$query = mysqli_query($koneksi, $sql_5);
-
-
-
 $sql_putra = "SELECT `nama`, `email` FROM `peserta`WHERE `jk` = '1' ORDER BY `id_peserta` ASC";
 $sql_putri = "SELECT `nama`, `email` FROM `peserta`WHERE `jk` = '2' ORDER BY `id_peserta` ASC";
 
@@ -340,22 +310,18 @@ $pembobotan_putri = pembobotan($normalisasi_putri);
 $concordance_putra = concordance($pembobotan_putra);
 $concordance_putri = concordance($pembobotan_putri);
 
-// $discordance_putra = discordance($pembobotan_putra);
+$discordance_putra = discordance($pembobotan_putra);
 $discordance_putri = discordance($pembobotan_putri);
-echo json_encode($discordance_putri);
 
-// $matriks_concordance_putra = matriks_concordance($concordance_putra);
+$matriks_concordance_putra = matriks_concordance($concordance_putra);
 $matriks_concordance_putri = matriks_concordance($concordance_putri);
-// echo json_encode($matriks_concordance_putri);
 
-// $matriks_discordance_putra = matriks_discordance($discordance_putra, $pembobotan_putra);
+$matriks_discordance_putra = matriks_discordance($discordance_putra, $pembobotan_putra);
 $matriks_discordance_putri = matriks_discordance($discordance_putri, $pembobotan_putri);
 
-// aggregate_dominan($matriks_concordance_putra, $matriks_discordance_putra);
+aggregate_dominan($matriks_concordance_putra, $matriks_discordance_putra);
 aggregate_dominan($matriks_concordance_putri, $matriks_discordance_putri);
 
-// header("location:../index.php?c=" . base64_encode('daftar_nilai') . "&act=" . base64_encode('4'));
+header("location:../index.php?c=" . base64_encode('daftar_nilai') . "&act=" . base64_encode('4'));
 
-///sampai discoro matrix
 ?>
-
