@@ -30,7 +30,7 @@ function map_to_array($jk)
 	$ret_arr = [];
 
 	while ($user = mysqli_fetch_array($query)) {
-		$queries = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $user['email'] . "' ORDER BY `id_kriteria` ASC");
+		$queries = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $user['email'] . "' AND (`id_kriteria`=1 or `id_kriteria`=2 or `id_kriteria`=3) ORDER BY `id_kriteria` ASC");
 		while ($nilai = mysqli_fetch_array($queries)) {
 			$nilai_pembulatan = round($nilai['nilai']);
             $tmp_nilai = 0;
@@ -73,7 +73,7 @@ function normalisasi($array)
 function pembobotan($array)
 {
 	$koneksi = mysqli_connect('localhost', 'root', '', 'db_dina');
-	$count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC");
+	$count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC LIMIT 3");
 	$tmp_arr = $array;
 	$num = 0;
 
@@ -88,7 +88,7 @@ function pembobotan($array)
 	return $tmp_arr;
 }
 
-$kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria`");
+$kriteria = mysqli_query($koneksi, "SELECT * FROM `kriteria` LIMIT 3");
 
 $nilai_putra = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `jk` = 1");
 $nilai_putri = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `jk` = 2");
@@ -206,7 +206,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 											<tr>
 												<td><?= $row['nama'] ?></td>
 												<?php
-												$sqlputra = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $row['email'] . "' ORDER BY `id` ASC");
+												$sqlputra = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $row['email'] . "'  AND (`id_kriteria`=1 or `id_kriteria`=2 or `id_kriteria`=3) ORDER BY `id` ASC");
 
 												while ($data = mysqli_fetch_array($sqlputra)) { ?>
 													<!-- INI YG DIUBAH -->
@@ -234,7 +234,7 @@ $pemenang_putri = pemenang($pemenang_pi);
 											<tr>
 												<td><?= $row['nama'] ?></td>
 												<?php
-												$sqlputra = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $row['email'] . "' ORDER BY `id` ASC");
+												$sqlputra = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '" . $row['email'] . "'  AND (`id_kriteria`=1 or `id_kriteria`=2 or `id_kriteria`=3) ORDER BY `id` ASC");
 
 												while ($data = mysqli_fetch_array($sqlputra)) { ?>
 													<!-- INI YG DIUBAH -->

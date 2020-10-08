@@ -8,7 +8,7 @@ function map_to_array($sql) {
     $ret_arr = [];
 
     while($user = mysqli_fetch_array($query)) {
-        $queries = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '".$user['email']."' ORDER BY `id_kriteria` ASC");
+        $queries = mysqli_query($koneksi, "SELECT * FROM `nilai` WHERE `email` = '".$user['email']."' AND (`id_kriteria`=1 or `id_kriteria`=2 or `id_kriteria`=3) ORDER BY `id_kriteria` ASC");
         while($nilai = mysqli_fetch_array($queries)) {
             $nilai_pembulatan = round($nilai['nilai']);
             $tmp_nilai = 0;
@@ -50,7 +50,7 @@ function normalisasi($array) {
 
 function pembobotan($array) {
     $koneksi = mysqli_connect('localhost', 'root', '', 'db_dina');
-    $count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC");
+    $count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC LIMIT 3");
     $tmp_arr = $array;
     $num =0;
 
@@ -85,15 +85,15 @@ function concordance($array)
                 $tmp_value[] = '-';
             }
             
-            if($t>=5){
+            if($t>=3){
                 break;
             }
             $t++;
             $ret_arr[$key][] = $tmp_value;
             
         }
-        // echo json_encode($ret_arr);
-        // echo "<br><br>";
+        echo json_encode($ret_arr);
+        echo "<br><br>";
         
     }
 
@@ -121,7 +121,7 @@ function discordance($array)
             } else {
                 $tmp_value[] = '-';
             }
-            if($t>=5) break;
+            if($t>=3) break;
             $t++;
 
             $ret_arr[$key][] = $tmp_value;
@@ -133,7 +133,7 @@ function discordance($array)
 
 function map_value_to_array() {
     $koneksi = mysqli_connect('localhost', 'root', '', 'db_dina');
-    $count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC");
+    $count = mysqli_query($koneksi, "SELECT `bobot` FROM `kriteria` ORDER BY `id` ASC LIMIT 3");
     $array = [];
 
     while($bobot = mysqli_fetch_array($count)) {
@@ -147,24 +147,25 @@ function map_value_to_array() {
 function matriks_concordance($array) {
     $temp_arr = [];
     $bobot = map_value_to_array();
+    $t = 0;
 
     //Mencari matriks
     foreach ($array as $key => $value) {
+        $p =0;
         for ($i=0; $i < count($value); $i++) {
             $temp_val = 0;
             for ($j=0; $j < count($value[$i]); $j++) {
-                if($value[$i][$j] != '-') {
-                   // $temp_val += $bobot[$value[$i][$j]];
-                }
                 $temp_val += $bobot[$value[$i][$j]];
             }
 
-            if($temp_val == 0) {
+            if($p == $t) {
                 $temp_arr[$key][] = '-';
             } else {
                 $temp_arr[$key][] = $temp_val;
             }
+            $p++;
         }
+        $t++;
     }
 
     insertToDb($temp_arr, "concordance_matrix");
@@ -204,7 +205,7 @@ function matriks_discordance($array, $weight_array)
         foreach($tmp_weight as $k => $v) {
             
             if($key != $k) {
-                // echo $key."heheh".$k;
+                echo $key."heheh".$k;
                 $tmp_arr = [];
                 
                 for ($i=0; $i < count($v); $i++) { 
@@ -231,7 +232,7 @@ function matriks_discordance($array, $weight_array)
                 
             }
             $ba++;
-            if ($ba>=5) {
+            if ($ba>=3) {
                 break;
             }
             
@@ -259,7 +260,7 @@ function matriks_discordance($array, $weight_array)
                 $ret_arr[$key][] = '-';
             }
 
-            if($t>=5){
+            if($t>=3){
                 break;
             }
             $t++;
@@ -371,7 +372,7 @@ $matriks_discordance_putri = matriks_discordance($discordance_putri, $pembobotan
 aggregate_dominan($matriks_concordance_putra, $matriks_discordance_putra);
 aggregate_dominan($matriks_concordance_putri, $matriks_discordance_putri);
 
-header("location:../index.php?c=" . base64_encode('daftar_nilai') . "&act=" . base64_encode('9'));
+header("location:../index.php?c=" . base64_encode('daftar_nilai60') . "&act=" . base64_encode('4'));
 
 ///sampai discoro matrix
 ?>

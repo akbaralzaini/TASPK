@@ -20,8 +20,11 @@ $final = mysqli_query($koneksi, "SELECT * FROM `peserta` WHERE `status` = 2");
 			<li><a href="./index.php">Beranda</a></li>
 			<li class="active">Daftar Peserta</li>
 		</ol>
-		<div>
-		<button class="btn btn-primary">ysvtsry</button>
+		<div class="pmd-card pmd-card-default pmd-z-depth" style="margin-top: 20px;margin-bottom:20px">
+			<div class="pmd-card-body">
+				<a href="./process/hitung_nilai60.php"><button class="btn btn-primary">Hitung 60 Peserta</button></a>
+				<a href="./process/hitung_nilai.php"><button class="btn btn-primary">Hitung 30 Peserta</button></a>
+			</div>
 		</div>
 
 		<div class="no-table-blank-state">

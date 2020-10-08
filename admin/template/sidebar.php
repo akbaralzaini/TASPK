@@ -52,14 +52,14 @@
 		$count = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM `aggregate_dominan`"));
 		if ($count > 0) { ?>
 
-			<li>
+			<!-- <li>
 				<a class="<?php if (isset($_GET['act']) && base64_decode($_GET['act']) == 4) {
 								echo "active";
 							} ?>" href="./index.php?c=<?= base64_encode('daftar_nilai') ?>&act=<?= base64_encode('4') ?>">
 					<i class="media-left media-middle material-icons">people</i>
 					<span class="media-body">Peringkat Peserta</span>
 				</a>
-			</li>
+			</li> -->
 
 		<?php } ?>
 
